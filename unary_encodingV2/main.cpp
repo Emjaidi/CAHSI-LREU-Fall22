@@ -30,7 +30,7 @@ Description:
 using namespace std;
 
 const int POPULATION = 100;
-const vector<int> FAV_NUM{ 1, 2, 3, 4};
+const vector<int> FAV_NUM{1, 2, 3, 4};
 //, 5, 6, 7, 8, 9, 10
 const float EPSILON = log(3);
 const float P = exp(EPSILON/2)/(1 + exp(EPSILON/2));
@@ -98,7 +98,7 @@ int person_fav()
     return rand()% FAV_NUM.size() + 1;
 }
 
-void populate_individuals(vector<vector<int>>& ind)
+void populate_individuals(vector<vector<int> >& ind)
 {
     for (int x = 0; x < ind.size(); x++)
     {
@@ -121,7 +121,7 @@ vector<bool> perturb(const vector<bool>& e_response)
 }
 
 template <typename T>
-void print_response(const vector<vector<T>>& response)
+void print_response(const vector<vector<T> >& response)
 {
     for (auto x: response)
     {
@@ -134,9 +134,9 @@ void print_response(const vector<vector<T>>& response)
 }
 
 //Transpose the perturbed response vector to tally up the sum of choices
-vector<vector<bool>> transpose_response(const vector<vector<bool>>& response)
+vector<vector<bool> > transpose_response(const vector<vector<bool> >& response)
 {
-    vector<vector<bool>> transposed_response(response[0].size(), vector<bool>());
+    vector<vector<bool> > transposed_response(response[0].size(), vector<bool>());
     for (int i = 0; i < response.size(); i++)
     {
         for (int j = 0; j < response[i].size(); j++)
@@ -148,7 +148,7 @@ vector<vector<bool>> transpose_response(const vector<vector<bool>>& response)
 }
 
 
-void populate_sum(const vector<vector<bool>>& og_transposed_response, vector<int>& og_sum_of_choices)
+void populate_sum(const vector<vector<bool> >& og_transposed_response, vector<int>& og_sum_of_choices)
 {
     for (int x = 0; x < og_transposed_response.size(); x++)
     {
@@ -169,9 +169,9 @@ float estimate(const int& sum)
 
 int main()
 {
-    vector<vector<int>> individuals(POPULATION, vector<int> ());//Keeps track of individuals and their favorite color;
-    vector<vector<bool>> encoded_response(POPULATION,vector<bool>());//Keeps track of the encoded response of the individuals;
-    vector<vector<bool>> perturbed_response(POPULATION,vector<bool>());//Keeps track of the perturbed response of the individuals;
+    vector<vector<int> > individuals(POPULATION, vector<int> ());//Keeps track of individuals and their favorite color;
+    vector<vector<bool> > encoded_response(POPULATION,vector<bool>());//Keeps track of the encoded response of the individuals;
+    vector<vector<bool> > perturbed_response(POPULATION,vector<bool>());//Keeps track of the perturbed response of the individuals;
     vector<int> og_sum_of_choices(FAV_NUM.size());//Used for the tally in the original choices
     vector<int> sum_of_choices(FAV_NUM.size());//Used for the sum in the estimation formula
     
@@ -215,8 +215,8 @@ int main()
     
     //Aggregate/estimate the data']]
     //Transpose the matrices
-    vector<vector<bool>> og_transposed_response = transpose_response(encoded_response);
-    vector<vector<bool>> transposed_response = transpose_response(perturbed_response);
+    vector<vector<bool> > og_transposed_response = transpose_response(encoded_response);
+    vector<vector<bool> > transposed_response = transpose_response(perturbed_response);
     
     populate_sum(og_transposed_response, og_sum_of_choices);
     populate_sum(transposed_response, sum_of_choices);
@@ -244,9 +244,6 @@ int main()
         cout << i + 1 << "\t\t\t\t\t" << estimate(sum_of_choices[i]);
         cout << endl;
     }
-    
-    
-    //cout << exp(EPSILON/2)/(1+exp(EPSILON/2))<< endl;
     
     return 0;
 }
