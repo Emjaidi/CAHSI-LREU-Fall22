@@ -4,9 +4,20 @@
 //
 //  Created by MJ Asuncion on 11/19/22.
 //
+#include <vector>
+#include <sstream>
+#include <fstream>
+#include <iostream>
+#include <cstring>
+
+#define FOR(i,a,b) for(int i=(a);i<(b);++i)
+#define REP(i,n) FOR(i,0,n)
 
 #ifndef read_tsv_h
 #define read_tsv_h
+
+std::vector<std::vector<std::string> > items;
+
 void read_tsv(char* fname) {
     std::ifstream ifs(fname);
     

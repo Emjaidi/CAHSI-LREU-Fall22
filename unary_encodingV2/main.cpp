@@ -17,7 +17,7 @@ Description:
     *       - [ ]
     * - [x] aggregate/estimate the responses
     *       - [ ]
-     - [ ] output the real numbers gathered
+     - [x] output the real numbers gathered
     --------------------------*/
 #include <iostream>
 #include <vector>
