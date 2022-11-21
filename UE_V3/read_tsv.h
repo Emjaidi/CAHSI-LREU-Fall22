@@ -30,8 +30,12 @@ void read_tsv(char* fname) {
         std::stringstream ss(line);
         std::vector<std::string> item;//stores the columns in the row
         std::string tmp;
+        int i = 0;
         while(getline(ss, tmp, '\t')) {
-            item.push_back(tmp);
+            if(i == 4 || i == 5){
+                item.push_back(tmp);
+            }
+            i++;
         }
         items.push_back(item);
     }
