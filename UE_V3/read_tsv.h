@@ -12,11 +12,15 @@
 
 #define FOR(i,a,b) for(int i=(a);i<(b);++i)
 #define REP(i,n) FOR(i,0,n)
+#define VECTWOINT std::vector<std::vector<double> > 
+
 
 #ifndef read_tsv_h
 #define read_tsv_h
 
-std::vector<std::vector<std::string> > items;
+VECTWOINT items; //Stores the x and y coordinate of row in the tsv
+
+double max_x, max_y, min_x, min_y; //keeps track of the graph limits
 
 void read_tsv(char* fname) {
     std::ifstream ifs(fname);
@@ -28,12 +32,12 @@ void read_tsv(char* fname) {
     std::string line;
     while (getline(ifs, line)) { //as long as there is input from line
         std::stringstream ss(line);
-        std::vector<std::string> item;//stores the columns in the row
+        std::vector<int> item;//stores the columns in the row
         std::string tmp;
         int i = 0;
         while(getline(ss, tmp, '\t')) {
             if(i == 4 || i == 5){
-                item.push_back(tmp);
+                item.push_back(stod(tmp));
             }
             i++;
         }
@@ -46,7 +50,7 @@ void read_tsv(char* fname) {
     return;
 }
 
-//void extract_location(
+void grap_limit_x(int i)
 
 
 #endif /* read_tsv_h */
