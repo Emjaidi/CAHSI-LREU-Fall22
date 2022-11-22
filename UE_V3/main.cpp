@@ -8,16 +8,8 @@ Description:
 
 *******************************************************************************/
     /*---------TODO-------------
-    * - [x] Generate population
-    * -     - Each with own response
-    *       - [x] Populate a vector with index as individual and the
-    *            choice (1-10) indexes their FAV_COLOR
-    *       - [ ]
-    * - [x] Perturb the responses
-    *       - [ ]
-    * - [x] aggregate/estimate the responses
-    *       - [ ]
-     - [x] output the real numbers gathered
+    *   
+   
     --------------------------*/
 #include <iostream>
 #include <vector>
@@ -59,7 +51,7 @@ void print_response(const vector<vector<T> >& response)
         {
             cout<< y << " ";
         }
-        cout << endl;
+        // cout << endl;
     }
 }
 

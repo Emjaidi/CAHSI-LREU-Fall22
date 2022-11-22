@@ -12,27 +12,28 @@
 
 #define FOR(i,a,b) for(int i=(a);i<(b);++i)
 #define REP(i,n) FOR(i,0,n)
-#define VECTWOINT std::vector<std::vector<double> > 
+#define VECTWODUB std::vector<std::vector<long double> > 
 
 
 #ifndef read_tsv_h
 #define read_tsv_h
 
-VECTWOINT items; //Stores the x and y coordinate of row in the tsv
 
-double max_x, max_y, min_x, min_y; //keeps track of the graph limits
+long double max_x, max_y, min_x, min_y; //keeps track of the graph limits
 
-void read_tsv(char* fname) {
+VECTWODUB read_tsv(char* fname) {
     std::ifstream ifs(fname);
+    VECTWODUB items; //Stores the x and y coordinate of row in the tsv
     
     if (ifs.fail()) { //incase stream fails
+        VECTWODUB err(1,std::vector<long double> (1,-1));
         std::cerr << "error" << std::endl;
-        return;
+        return err;
     }
     std::string line;
     while (getline(ifs, line)) { //as long as there is input from line
         std::stringstream ss(line);
-        std::vector<int> item;//stores the columns in the row
+        std::vector<long double> item;//stores the columns in the row
         std::string tmp;
         int i = 0;
         while(getline(ss, tmp, '\t')) {
@@ -43,14 +44,15 @@ void read_tsv(char* fname) {
         }
         items.push_back(item);
     }
-    REP(i,items.size()) {
-        REP(j, items[i].size())
-            std::cout << "[" << i << "][" << j <<"]: " << items[i][j] << std::endl;
-    }
-    return;
+    return items;
 }
 
-void grap_limit_x(int i)
-
+//void grap_limit_x(int i)
+void print_v2d(VECTWODUB items){
+    REP(i,items.size()) {
+        REP(j, items[i].size())
+            std::cout << "[" << i << "][" << j <<"]: " << std::setprecision(16) << items[i][j] << std::endl;
+    }
+}
 
 #endif /* read_tsv_h */
