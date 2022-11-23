@@ -3,5 +3,10 @@
         "iosfwd": "cpp",
         "cstring": "cpp",
         "vector": "cpp"
-    }
+    },
+    "workbench.preferredHighContrastLightColorTheme": "Default High Contrast",
+    "workbench.colorTheme": "Default High Contrast",
+    "workbench.preferredDarkColorTheme": "Default High Contrast",
+    "workbench.preferredLightColorTheme": "Default High Contrast",
+    "workbench.iconTheme": "vs-seti"
 }
