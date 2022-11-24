@@ -43,8 +43,43 @@ void Data_Point::print_coord()
 }
 /*END Data_Point class*/
 
-double max_x, max_y, min_x, min_y; //keeps track of the graph limits
+double max_x{}, max_y{}, min_x{}, min_y{}; //keeps track of the graph limits
 
+void x_limit(double x)
+{
+    if (x > min_x)
+    {
+        if(x > max_x)
+        {
+            max_x = x;
+        }
+    }
+    if (x < max_x)
+    {
+        if(x > min_x)
+        {
+            min_x = x;
+        }
+    }
+}
+
+void y_limit(double y)
+{
+    if (y > min_y)
+    {
+        if(y > max_y)
+        {
+            max_y = y;
+        }
+    }
+    if (y < max_y)
+    {
+        if(y > min_y)
+        {
+            min_y = y;
+        }
+    }
+}
 std::vector<Data_Point> read_tsv(char* fname) {
     std::ifstream ifs(fname);
     std::vector<Data_Point> items; //Stores the x and y coordinate along with the cell and the perturbed cell of row in the tsv
@@ -63,15 +98,21 @@ std::vector<Data_Point> read_tsv(char* fname) {
         int i = 0; //keeps track of the column index
         double x {};
         double y {};
+
         while(getline(ss, tmp, '\t')) {
             if(i == 4 ){
                 x = stod(tmp);
+                //std::cout << x << std::endl;
+                x_limit(x);
             }
             else if(i == 5 ){
                 y = stod(tmp);
+                //std::cout << y << std::endl;
+                y_limit(y);
             }
             i++;
         }
+
         item.set_coord(x,y);
         items.push_back(item);
     }

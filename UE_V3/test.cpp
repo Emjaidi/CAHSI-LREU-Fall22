@@ -9,10 +9,12 @@ int main()
     REP(i, coordinates.size())
     {
         std::cout << "User: " << i;
-        std::cout << "\t";
+        std::cout << " ";
         coordinates.at(i).print_coord();
-        std::cout << std::endl;
+        
     }
+    std::cout << "\nx[min,max] and y[min,max] limits are: [" << min_x << ", "
+        << max_x << "][" << min_y << ", " << max_y << "]\n";
     //print_v2d(coordinates);
     //std::cout << 'g';
 
