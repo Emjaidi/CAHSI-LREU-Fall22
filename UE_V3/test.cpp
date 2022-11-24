@@ -1,7 +1,5 @@
-#include <iostream>
-#include <vector>
-
 #include "read_tsv.h"
+#include "Data_Point.h"
 
 int main()
 {
