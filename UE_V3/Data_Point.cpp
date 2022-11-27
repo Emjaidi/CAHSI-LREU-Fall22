@@ -11,37 +11,27 @@ double x_max, y_max, x_min, y_min; // keeps track of the graph limits
 
 void x_limit(double x)
 {
-    if (x > x_min)
+    x_min = x;
+    if (x < x_min)
     {
-        if (x > x_max)
-        {
-            x_max = x;
-        }
+        x_min = x;
     }
-    if (x < x_max)
+    else if (x > x_max)
     {
-        if (x > x_min)
-        {
-            x_min = x;
-        }
+        x_max = x;
     }
 }
 
 void y_limit(double y)
 {
-    if (y > y_min)
+    y_min = y;
+    if (y < y_min)
     {
-        if (y > y_max)
-        {
-            y_max = y;
-        }
+        y_min = y;
     }
-    if (y < y_max)
+    else if (y > y_max)
     {
-        if (y > y_min)
-        {
-            y_min = y;
-        }
+        y_max = y;
     }
 }
 
@@ -94,20 +84,34 @@ std::vector<Data_Point> read_tsv(char *fname)
 
 VECTWODUB determine_map()
 {
-    int CELL_COUNT = CELL * CELL;
-    VECTWODUB map_cell(CELL_COUNT,std::vector<double>(4,0));
-    double cell_width = (x_max - x_min) * (1/CELL);
-    double cell_height = (y_max - y_min) * (1/CELL);
-    std::cout << CELL_COUNT << "\n";
+    int cell_count = CELL * CELL;
+    VECTWODUB map_cell(cell_count,std::vector<double>(4,0));
+    double cell_width = (x_max - x_min) * (1/(double)CELL);
+    double cell_height = (y_max - y_min) * (1/(double)CELL);
 
+    std::cout << "X min: " << x_min << " | max: "  << x_max << "\n";
+    std::cout << "******************************\n";
+    std::cout << "Y min: "<< y_min << " | max: "  <<  y_max << "\n";
+    std::cout << cell_count << "\n";
+    std::cout << "Cell width: "<< cell_width << "\nCell Height: "<< cell_height << "\n";
+
+    //Y_max/x_min/ are resetting
     map_cell.at(0) = {y_max, y_max - cell_height, x_min, x_min + cell_width};
-    for(int i = 1; i < CELL_COUNT; ++i)
+    for(int i = 1; i < cell_count; ++i)
     {
-        map_cell.at(i) = {y_max, y_max - cell_height, map_cell[i-1][3], map_cell[i-1][2] + cell_width};
+        //Need to accurately subtract y_max to determine cell height
         if(i % (int)CELL == 0)
         {
             y_max -= cell_height;
-            std::cout << y_max << "\n";
+            std::cout << "y_max is now: "<< std::setprecision(8)<< y_max << "\n";
+            map_cell.at(i) = {y_max, map_cell[i-1][1] - cell_height, map_cell[i-1][3], map_cell[i-1][3] + cell_width};
+            std::cout << "Map cell " << i << " guts: "<< map_cell[i][0] << ", " << map_cell[i][1] 
+            << ", " << map_cell[i][2]<< ", " << map_cell[i][3] << std::endl;
+        }
+        else{
+            map_cell.at(i) = {y_max, map_cell[i-1][1] - cell_height, map_cell[i-1][3], map_cell[i-1][3] + cell_width};
+            std::cout << "Map cell " << i << " guts: "<< map_cell[i][0] << ", " << map_cell[i][1] 
+            << ", " << map_cell[i][2]<< ", " << map_cell[i][3] << std::endl;
         }
     }
     return map_cell;
@@ -116,8 +120,8 @@ VECTWODUB determine_map()
 /* BEGIN Data_Point class*/
 void Data_Point::set_coord(double x, double y)
 {
-    latitude = x;
-    longtitude = y;
+    latitude = y;
+    longtitude = x;
 }
 
 void Data_Point::print_coord()
@@ -132,22 +136,30 @@ Data_Point::Data_Point()
     designated_cell = -1;
     perturbed_cell = -1;
 }
-
+//
+//void Data_Point::set_cell(VECTWODUB vect)//search vect and determine if x,y of user_loation falls in a cells coordinates
+//{
+//    REP(i,vect.size())
+//    {
+//        if(this->longtitude >= vect[i][2] && this->longtitude <= vect[i][3])
+//        {
+//            if(this->latitude <= vect[i][0] && this->latitude >= vect[i][1])
+//            { 
+//                this->designated_cell = i + 1;
+//            }
+//        }
+//    }
+//}
 void Data_Point::set_cell(VECTWODUB vect)//search vect and determine if x,y of user_loation falls in a cells coordinates
 {
-    REP(i,vect.size())
+    int j = 0;
+    for(auto i:vect)
     {
-        if(this->latitude <= vect[i][0])
+        if(this->longtitude >= i[2] && this->longtitude <= i[3])
         {
-            if(this->longtitude >= vect[i][2]) 
-            {
-                if(this->latitude > vect[i][1])
-                { 
-                    if(this->longtitude < vect[i][3])
-                    {
-                        this->designated_cell = i;
-                    }
-                }
+            if(this->latitude <= i[0] && this->latitude >= i[1])
+            { 
+                this->designated_cell = j + 1;
             }
         }
     }
