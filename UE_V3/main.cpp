@@ -19,7 +19,7 @@ int main()
         std::cout << "Data point " << i << " is located in cell: ";
         user_location.at(i).print_cell();
         std::cout << "\n";
-        std::cout << "It's coordinate ";
+        std::cout << "Its coordinate ";
         user_location.at(i).print_coord();
 
         std::cout << "\n";

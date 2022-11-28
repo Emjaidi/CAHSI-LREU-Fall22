@@ -22,7 +22,7 @@
 #define REP(i, n) FOR(i, 0, n)
 #define VECTWODUB std::vector<std::vector<double> >
 
-double const CELL = 7; 
+double const CELL = 4; 
 
 class Data_Point
 {
@@ -41,8 +41,8 @@ public:
 
 std::vector<Data_Point> read_tsv(char* file);
 
-void x_limit(double);
-void y_limit(double);
+void x_limit(double&);
+void y_limit(double&);
 
 VECTWODUB determine_map();
 #endif
