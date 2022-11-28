@@ -12,7 +12,7 @@ int main()
 {
     std::vector<Data_Point> user_location = read_tsv((char *)"test.txt");
     VECTWODUB map = determine_map();
-    REP(i,user_location.size())
+    FOR(i,0,user_location.size())
     {
         user_location.at(i).set_cell(map);
         std::cout << "******************************\n";

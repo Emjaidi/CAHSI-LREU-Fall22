@@ -62,7 +62,6 @@ std::vector<Data_Point> read_tsv(char *fname)
         {
             if (i == 4)
             {
-
                 x = stod(tmp);
                 if (h==0)
                     x_min = x;
@@ -95,6 +94,7 @@ VECTWODUB determine_map()
     std::cout << "X min: " << x_min << " | max: "  << x_max << "\n";
     std::cout << "******************************\n";
     std::cout << "Y min: "<< y_min << " | max: "  <<  y_max << "\n";
+    std::cout << "******************************\n";
     std::cout << cell_count << "\n";
     std::cout << "Cell width: "<< cell_width << "\nCell Height: "<< cell_height << "\n";
 
@@ -105,14 +105,14 @@ VECTWODUB determine_map()
         if(i % (int)CELL == 0)
         {
             y_max -= cell_height;
-            std::cout << "y_max is now: "<< std::setprecision(8)<< y_max << "\n";
+            std::cout << "y_max is now: "<< std::setprecision(8)<< y_max << "\n\n";
             map_cell.at(i) = {y_max, y_max - cell_height, x_min, x_min + cell_width};
-            std::cout << "Map cell " << i << " contents: "<< map_cell[i][0] << ", " << map_cell[i][1] 
+            std::cout << "Map cell " << std::setprecision(16) << i << " contents: "<< map_cell[i][0] << ", " << map_cell[i][1] 
             << ", " << map_cell[i][2]<< ", " << map_cell[i][3] << std::endl;
         }
         else{
             map_cell.at(i) = {y_max, y_max - cell_height, map_cell[i-1][3], map_cell[i-1][3] + cell_width};
-            std::cout << "Map cell " << i << " guts: "<< map_cell[i][0] << ", " << map_cell[i][1] 
+            std::cout << "Map cell " << std::setprecision(16) << i << " contents: "<< map_cell[i][0] << ", " << map_cell[i][1] 
             << ", " << map_cell[i][2]<< ", " << map_cell[i][3] << std::endl;
         }
     }
@@ -138,7 +138,7 @@ Data_Point::Data_Point()
     designated_cell = -1;
     perturbed_cell = -1;
 }
-//
+
 //void Data_Point::set_cell(VECTWODUB vect)//search vect and determine if x,y of user_loation falls in a cells coordinates
 //{
 //    REP(i,vect.size())
@@ -151,19 +151,26 @@ Data_Point::Data_Point()
 //            }
 //        }
 //    }
-//}
+// }
+
 void Data_Point::set_cell(VECTWODUB vect)//search vect and determine if x,y of user_loation falls in a cells coordinates
 {
-    int j = 0;
-    for(auto i:vect)
+    FOR(i,0,vect.size())
     {
-        if(this->longtitude >= i[2] && this->longtitude <= i[3])
+        if(this->latitude <= vect[i][0] && this->latitude >= vect[i][1])
         {
-            if(this->latitude <= i[0] && this->latitude >= i[1])
+            if(this->longtitude >= vect[i][2] && this->longtitude <= vect[i][3])
             { 
-                this->designated_cell = j + 1;
+                this->designated_cell = i + 1;
             }
         }
+        //if(this->longtitude >= vect[i][2] && this->longtitude <= vect[i][3])
+        //{
+        //    if(this->latitude <= vect[i][0] && this->latitude >= vect[i][1])
+        //    { 
+        //        this->designated_cell = i + 1;
+        //    }
+        //}
     }
 }
 
@@ -177,7 +184,7 @@ void Data_Point::set_cell(VECTWODUB vect)//search vect and determine if x,y of u
 //        }
 //    }
 //}
-//
+
 void Data_Point::print_cell()
 {
     std::cout << designated_cell;
