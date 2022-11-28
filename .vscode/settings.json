@@ -2,7 +2,8 @@
     "files.associations": {
         "iosfwd": "cpp",
         "cstring": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "iostream": "cpp"
     },
     "workbench.preferredHighContrastLightColorTheme": "Default High Contrast",
     "workbench.colorTheme": "Default High Contrast",

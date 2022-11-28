@@ -22,7 +22,7 @@
 #define REP(i, n) FOR(i, 0, n)
 #define VECTWODUB std::vector<std::vector<double> >
 
-double const CELL = 5; 
+double const CELL = 10; 
 
 class Data_Point
 {
