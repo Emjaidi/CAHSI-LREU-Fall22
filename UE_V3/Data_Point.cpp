@@ -6,6 +6,8 @@
 #include <iostream>
 #include <iomanip>
 
+double const CELL = 10; 
+int CELL_COUNT = (int)CELL*CELL;
 
 double x_max, y_max, x_min, y_min; // keeps track of the graph limits
 //double xt_max, yt_max, xt_min, yt_min; //its
@@ -83,6 +85,11 @@ std::vector<Data_Point> read_tsv(char *fname)
     return items;
 }
 
+void print_map(const VECTWODUB& v, const int& i)
+{
+    std::cout << "Map cell " << std::setprecision(16) << i << " contents: "<< v[i][0] << ", " << v[i][1] 
+            << ", " << v[i][2]<< ", " << v[i][3] << std::endl;
+}
 
 VECTWODUB determine_map()
 {
@@ -100,6 +107,8 @@ VECTWODUB determine_map()
 
     //Y_max/x_min/ are resetting
     map_cell.at(0) = {y_max, y_max - cell_height, x_min, x_min + cell_width};
+    std::cout << "Map cell " << std::setprecision(16) << 0 << " contents: "<< map_cell[0][0] << ", " << map_cell[0][1] 
+            << ", " << map_cell[0][2]<< ", " << map_cell[0][3] << std::endl;
     for(int i = 1; i < cell_count; ++i)
     {
         if(i % (int)CELL == 0)
@@ -107,13 +116,11 @@ VECTWODUB determine_map()
             y_max -= cell_height;
             std::cout << "y_max is now: "<< std::setprecision(8)<< y_max << "\n\n";
             map_cell.at(i) = {y_max, y_max - cell_height, x_min, x_min + cell_width};
-            std::cout << "Map cell " << std::setprecision(16) << i << " contents: "<< map_cell[i][0] << ", " << map_cell[i][1] 
-            << ", " << map_cell[i][2]<< ", " << map_cell[i][3] << std::endl;
+            print_map(map_cell, i);
         }
         else{
             map_cell.at(i) = {y_max, y_max - cell_height, map_cell[i-1][3], map_cell[i-1][3] + cell_width};
-            std::cout << "Map cell " << std::setprecision(16) << i << " contents: "<< map_cell[i][0] << ", " << map_cell[i][1] 
-            << ", " << map_cell[i][2]<< ", " << map_cell[i][3] << std::endl;
+            print_map(map_cell, i);
         }
     }
     return map_cell;
@@ -131,27 +138,12 @@ void Data_Point::print_coord()
     std::cout << "Location: " << std::setprecision(16) << latitude << ", " << longtitude << std::endl;
 }
 
-Data_Point::Data_Point()
+Data_Point::Data_Point(): perturbed_cell(CELL_COUNT, 0)
 {
     latitude = -1.0;
     longtitude = -1.0;
     designated_cell = -1;
-    perturbed_cell = -1;
 }
-
-//void Data_Point::set_cell(VECTWODUB vect)//search vect and determine if x,y of user_loation falls in a cells coordinates
-//{
-//    REP(i,vect.size())
-//    {
-//        if(this->longtitude >= vect[i][2] && this->longtitude <= vect[i][3])
-//        {
-//            if(this->latitude <= vect[i][0] && this->latitude >= vect[i][1])
-//            { 
-//                this->designated_cell = i + 1;
-//            }
-//        }
-//    }
-// }
 
 void Data_Point::set_cell(VECTWODUB vect)//search vect and determine if x,y of user_loation falls in a cells coordinates
 {
@@ -164,26 +156,8 @@ void Data_Point::set_cell(VECTWODUB vect)//search vect and determine if x,y of u
                 this->designated_cell = i + 1;
             }
         }
-        //if(this->longtitude >= vect[i][2] && this->longtitude <= vect[i][3])
-        //{
-        //    if(this->latitude <= vect[i][0] && this->latitude >= vect[i][1])
-        //    { 
-        //        this->designated_cell = i + 1;
-        //    }
-        //}
     }
 }
-
-//void Data_Point::set_cell(VECTWODUB vect)//search vect and determine if x,y of user_loation falls in a cells coordinates
-//{
-//    REP(i,vect.size())
-//    {
-//        if(this->latitude <= vect[i][0] && this->longtitude >= vect[i][2] && this->latitude > vect[i][1] && this->longtitude < vect[i][3])
-//        {
-//            this->designated_cell = i;
-//        }
-//    }
-//}
 
 void Data_Point::print_cell()
 {

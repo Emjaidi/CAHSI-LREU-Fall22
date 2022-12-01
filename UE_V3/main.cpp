@@ -16,7 +16,8 @@ int main()
     {
         user_location.at(i).set_cell(map);
         std::cout << "******************************\n";
-        std::cout << "Data point " << i << " is located in cell: ";
+   
+       std::cout << "Data point " << i << " is located in cell: ";
         user_location.at(i).print_cell();
         std::cout << "\n";
         std::cout << "Its coordinate ";
