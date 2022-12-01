@@ -9,8 +9,8 @@
  *      - [x] Determine how many cells are in graph
  *      - [ ] 
  *  - [ ] perturb cell function 
- *      - [ ] Init perturbed cell class with CELL*CELL of 0 values
- *      - [ ]  
+ *      - [x] Init perturbed cell class with CELL*CELL of 0 values
+ *      - [ ] 
  * 
  * 
 *******************************/
@@ -23,13 +23,14 @@
 #define FOR(i, a, b) for (int i = (a); i < (b); ++i)
 #define REP(i, n) FOR(i, 0, n)
 #define VECTWODUB std::vector<std::vector<double> >
+#define VECTWOBOOL std::vector<std::vector<bool> >
 
 class Data_Point
 {
     double latitude;//Y-axis
     double longtitude;//X-axis
     int designated_cell;
-    std::vector<int> perturbed_cell;
+    std::vector<bool> perturbed_cell;
 public:
     Data_Point();
     void print_coord();
