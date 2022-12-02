@@ -1,4 +1,5 @@
 #include "Data_Point.h"
+#include "unary_e.h"
 #include <sstream>
 #include <cstring>
 #include <vector>
@@ -90,6 +91,15 @@ void print_map(const VECTWODUB& v, const int& i)
     std::cout << "Map cell " << std::setprecision(16) << i << " contents: "<< v[i][0] << ", " << v[i][1] 
             << ", " << v[i][2]<< ", " << v[i][3] << std::endl;
 }
+    
+void print_min_max()
+{
+    std::cout << "******************************\n";
+    std::cout << "X min: " << x_min << " | max: "  << x_max << "\n";
+    std::cout << "******************************\n";
+    std::cout << "Y min: "<< y_min << " | max: "  <<  y_max << "\n";
+    std::cout << "******************************\n";
+}
 
 VECTWODUB determine_map()
 {
@@ -98,29 +108,27 @@ VECTWODUB determine_map()
     double cell_width = (x_max - x_min)  /(double)CELL;
     double cell_height = (y_max - y_min) /(double)CELL;
 
-    std::cout << "X min: " << x_min << " | max: "  << x_max << "\n";
-    std::cout << "******************************\n";
-    std::cout << "Y min: "<< y_min << " | max: "  <<  y_max << "\n";
-    std::cout << "******************************\n";
-    std::cout << cell_count << "\n";
-    std::cout << "Cell width: "<< cell_width << "\nCell Height: "<< cell_height << "\n";
+    print_min_max();
+//    std::cout << cell_count << "\n";
+//    std::cout << "Cell width: "<< cell_width << "\nCell Height: "<< cell_height << "\n";
 
     //Y_max/x_min/ are resetting
     map_cell.at(0) = {y_max, y_max - cell_height, x_min, x_min + cell_width};
-    std::cout << "Map cell " << std::setprecision(16) << 0 << " contents: "<< map_cell[0][0] << ", " << map_cell[0][1] 
-            << ", " << map_cell[0][2]<< ", " << map_cell[0][3] << std::endl;
+//    print_map(map_cell, 0);
+
     for(int i = 1; i < cell_count; ++i)
     {
         if(i % (int)CELL == 0)
         {
             y_max -= cell_height;
-            std::cout << "y_max is now: "<< std::setprecision(8)<< y_max << "\n\n";
+            //std::cout << "y_max is now: "<< std::setprecision(8)<< y_max << "\n\n";
             map_cell.at(i) = {y_max, y_max - cell_height, x_min, x_min + cell_width};
-            print_map(map_cell, i);
+ //           print_map(map_cell, i);
         }
-        else{
+        else
+        {
             map_cell.at(i) = {y_max, y_max - cell_height, map_cell[i-1][3], map_cell[i-1][3] + cell_width};
-            print_map(map_cell, i);
+  //          print_map(map_cell, i);
         }
     }
     return map_cell;
@@ -163,4 +171,11 @@ void Data_Point::print_cell()
 {
     std::cout << designated_cell;
 }
+
+void Data_Point::perturb_cell()
+{
+    encode(perturbed_cell, CELL_COUNT, designated_cell);
+    perturb(perturbed_cell);
+}
+
 /*END Data_Point class*/
