@@ -92,14 +92,15 @@ float estimate(const int& sum)
     return estimation;
 }
 
-void populate_sum(const VECTWOBOOL& og_transposed_response, std::vector<int>& og_sum_of_choices)
+void populate_sum(const std::vector<Data_Point>& point, std::vector<int>& sum_of_choices)
 {
-    for (int x = 0; x < og_transposed_response.size(); x++)
+    REP (i, point.size())
     {
-        for (auto y: og_transposed_response.at(x))
+        int x {};
+        for (auto y: point.at(i).original_cell)
         {
             if (y == 1)
-                og_sum_of_choices.at(x) += 1;
+                sum_of_choices.at(x) += 1;
         }
     }
 }

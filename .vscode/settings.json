@@ -69,5 +69,8 @@
     "workbench.colorTheme": "Default High Contrast",
     "workbench.preferredDarkColorTheme": "Default High Contrast",
     "workbench.preferredLightColorTheme": "Default High Contrast",
-    "workbench.iconTheme": "vs-seti"
+    "workbench.iconTheme": "vs-seti",
+    "zenMode.hideLineNumbers": false,
+    "zenMode.hideStatusBar": false,
+    "zenMode.fullScreen": false
 }

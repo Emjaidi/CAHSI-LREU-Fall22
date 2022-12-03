@@ -31,11 +31,13 @@ class Data_Point
     double longtitude;//X-axis
     int designated_cell;
 public:
+    std::vector<bool> original_cell;
     std::vector<bool> perturbed_cell;
     Data_Point();
     void print_coord();
     void set_coord(double, double);
     void set_cell(VECTWODUB);
+    void encode_cell();
     void perturb_cell();
     void print_cell();
 };

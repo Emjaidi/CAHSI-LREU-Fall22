@@ -1,3 +1,8 @@
+/*
+/ Data point class for storing latitude/longitude of user data
+/ Unary encoding implementation of LDP
+*/
+
 #include "Data_Point.h"
 #include "unary_e.h"
 #include <sstream>
@@ -146,7 +151,7 @@ void Data_Point::print_coord()
     std::cout << "Location: " << std::setprecision(16) << latitude << ", " << longtitude << std::endl;
 }
 
-Data_Point::Data_Point(): perturbed_cell(CELL_COUNT, 0)
+Data_Point::Data_Point(): perturbed_cell(CELL_COUNT, 0), original_cell(CELL_COUNT, 0)
 {
     latitude = -1.0;
     longtitude = -1.0;
@@ -172,9 +177,13 @@ void Data_Point::print_cell()
     std::cout << designated_cell;
 }
 
+void Data_Point::encode_cell()
+{
+    encode(original_cell, CELL_COUNT, designated_cell);
+}
+
 void Data_Point::perturb_cell()
 {
-    encode(perturbed_cell, CELL_COUNT, designated_cell);
     perturb(perturbed_cell);
 }
 

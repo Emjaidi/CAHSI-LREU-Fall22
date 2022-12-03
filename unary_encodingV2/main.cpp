@@ -220,11 +220,7 @@ int main()
     
     populate_sum(og_transposed_response, og_sum_of_choices);
     populate_sum(transposed_response, sum_of_choices);
-    
-    /*
-     For loop above and below should be made into its function
-     */
-    
+
     //Populate the sum_of_choices
     
     
