@@ -20,7 +20,9 @@ void perturb(std::vector<bool>&);
 
 float estimate(const int& );
 
-void populate_sum(const VECTWOBOOL&, std::vector<int>&);
+void populate_sum(const std::vector<Data_Point>&, std::vector<int>&);
+
+void populate_perturbed_sum(const std::vector<Data_Point>&, std::vector<int>&);
 
 VECTWOBOOL transpose_response(const VECTWOBOOL&);
 #endif
