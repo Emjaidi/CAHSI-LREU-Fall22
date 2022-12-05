@@ -19,14 +19,9 @@
 extern int CELL_COUNT;
 
 const int POPULATION = CELL_COUNT;
-//const std::vector<int> FAV_NUM{1, 2, 3, 4};
-//, 5, 6, 7, 8, 9, 10
 const double EPSILON = log(3);
 const double P = exp(EPSILON/2)/(1 + exp(EPSILON/2));
 const double Q = 1.00 - P;
-
-
-
 
 //Function returns vector of bools
 //A simulation of bits with the only 1 being the response index in FAV_NUM
