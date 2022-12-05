@@ -19,7 +19,7 @@
 extern int CELL_COUNT;
 
 const int POPULATION = CELL_COUNT;
-const double EPSILON = log(3);
+const double EPSILON = log(4);
 const double P = exp(EPSILON/2)/(1 + exp(EPSILON/2));
 const double Q = 1.00 - P;
 

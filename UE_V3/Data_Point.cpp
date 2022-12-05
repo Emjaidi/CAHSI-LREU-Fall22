@@ -12,7 +12,7 @@
 #include <iostream>
 #include <iomanip>
 
-double const CELL = 10; 
+double const CELL = 15; 
 int CELL_COUNT = (int)CELL*CELL;
 
 double x_max, y_max, x_min, y_min; // keeps track of the graph limits
