@@ -12,7 +12,7 @@
 #include <iostream>
 #include <iomanip>
 
-double const CELL = 15; 
+double const CELL = 5; 
 int CELL_COUNT = (int)CELL*CELL;
 
 double x_max, y_max, x_min, y_min; // keeps track of the graph limits
@@ -181,6 +181,16 @@ void Data_Point::encode_cell()
 {
     encode(original_cell, CELL_COUNT, designated_cell);
 }
+
+//void Data_Point::populate_o_sum(const std::vector<Data_Point>&,std::vector<int>&)
+//{
+//
+//}
+//void Data_Point::populate_o_sum(const std::vector<Data_Point>&,std::vector<int>&)
+//{
+//
+//}
+
 
 void Data_Point::perturb_cell()
 {

@@ -30,6 +30,7 @@ int main()
         {
             std::cout << j << " ";
         }*/
+        user_location.at(i).perturbed_cell = user_location.at(i).original_cell;
         user_location.at(i).perturb_cell();
         //std::cout << "\nCELL PERTURBED*****************\n";
         
@@ -66,7 +67,7 @@ int main()
     std::cout << "Cell location\t\t\t\tEstimation\n";
     for (int i = 0; i < sum_of_choices.size(); i++)
     {
-        std::cout << i + 1 << "\t\t\t\t\t" << estimate(sum_of_choices[i]);
+        std::cout << i + 1 << "\t\t\t\t\t" << estimate(sum_of_choices[i]) << "\t\t\t\t\t";
         std::cout << std::endl;
     }
     return 0;

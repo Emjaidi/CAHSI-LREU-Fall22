@@ -18,9 +18,10 @@
 
 extern int CELL_COUNT;
 
-const int POPULATION = CELL_COUNT;
-const double EPSILON = log(4);
-const double P = exp(EPSILON/2)/(1 + exp(EPSILON/2));
+const int POPULATION = 10000;
+const double EPSILON = log(3);
+const double P = 0.95;
+//exp(EPSILON/2)/(1 + exp(EPSILON/2));
 const double Q = 1.00 - P;
 
 //Function returns vector of bools
@@ -88,8 +89,12 @@ void perturb(std::vector<bool>& e_response)
 
 float estimate(const int& sum)
 {
-    float estimation = sum - POPULATION * Q/2 * P - 1;
-    return estimation;
+    float estimation = (sum - POPULATION * Q)/(2 * P - 1);
+    if(estimation < 0){
+        return 0;
+    }
+    else
+        return estimation;
 }
 
 void populate_sum(const std::vector<Data_Point>& point, std::vector<int>& sum_of_choices)
