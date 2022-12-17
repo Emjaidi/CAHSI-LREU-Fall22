@@ -27,9 +27,8 @@ public:
     std::vector<bool> original_cell;
     std::vector<bool> perturbed_cell;
     Data_Point();
+    //void fab_loc();
     void print_coord();
-//    void populate_p_sum(const std::vector<Data_Point>&,std::vector<int>&);
-//    void populate_o_sum(const std::vector<Data_Point>&,std::vector<int>&);
     void set_coord(double, double);
     void set_cell(VECTWODUB);
     void encode_cell();

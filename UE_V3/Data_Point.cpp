@@ -12,7 +12,7 @@
 #include <iostream>
 #include <iomanip>
 
-double const CELL = 5; 
+double const CELL = 3; 
 int CELL_COUNT = (int)CELL*CELL;
 
 double x_max, y_max, x_min, y_min; // keeps track of the graph limits
@@ -108,8 +108,8 @@ void print_min_max()
 
 VECTWODUB determine_map()
 {
-    int cell_count = CELL * CELL;
-    VECTWODUB map_cell(cell_count,std::vector<double>(4,0));
+    //
+    VECTWODUB map_cell(CELL_COUNT,std::vector<double>(4,0));
     double cell_width = (x_max - x_min)  /(double)CELL;
     double cell_height = (y_max - y_min) /(double)CELL;
 
@@ -121,7 +121,8 @@ VECTWODUB determine_map()
     map_cell.at(0) = {y_max, y_max - cell_height, x_min, x_min + cell_width};
 //    print_map(map_cell, 0);
 
-    for(int i = 1; i < cell_count; ++i)
+//Loops through 
+    for(int i = 1; i < CELL_COUNT; ++i)
     {
         if(i % (int)CELL == 0)
         {
@@ -138,6 +139,8 @@ VECTWODUB determine_map()
     }
     return map_cell;
 }
+
+
 
 /* BEGIN Data_Point class*/
 void Data_Point::set_coord(double x, double y)
@@ -181,16 +184,6 @@ void Data_Point::encode_cell()
 {
     encode(original_cell, CELL_COUNT, designated_cell);
 }
-
-//void Data_Point::populate_o_sum(const std::vector<Data_Point>&,std::vector<int>&)
-//{
-//
-//}
-//void Data_Point::populate_o_sum(const std::vector<Data_Point>&,std::vector<int>&)
-//{
-//
-//}
-
 
 void Data_Point::perturb_cell()
 {
