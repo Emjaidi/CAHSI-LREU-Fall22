@@ -27,7 +27,10 @@ public:
     std::vector<bool> original_cell;
     std::vector<bool> perturbed_cell;
     Data_Point();
-    //void fab_loc();
+    //std::vector<Data_Point> fab_loc(VECTWODUB, std::vector<int>);
+    void set_lat(double);
+    void set_long(double);
+    void set_cell(int);
     void print_coord();
     void set_coord(double, double);
     void set_cell(VECTWODUB);

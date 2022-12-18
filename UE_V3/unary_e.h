@@ -24,5 +24,7 @@ void populate_sum(const std::vector<Data_Point>&, std::vector<int>&);
 
 void populate_perturbed_sum(const std::vector<Data_Point>&, std::vector<int>&);
 
+std::vector<Data_Point> generate_est_map(std::vector<int>, VECTWODUB);
+
 VECTWOBOOL transpose_response(const VECTWOBOOL&);
 #endif

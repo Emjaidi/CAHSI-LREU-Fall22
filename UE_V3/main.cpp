@@ -13,7 +13,7 @@ extern int CELL_COUNT;
 
 int main()
 {
-    std::vector<Data_Point> user_location = read_tsv((char *)"exp.txt");
+    std::vector<Data_Point> user_location = read_tsv((char *)"test.txt");
     std::vector<Data_Point> est_user_location;
     VECTWODUB map = determine_map();
     std::vector<int> og_sum_of_choices(CELL_COUNT,0);
@@ -55,10 +55,9 @@ int main()
     {
         est_choices.at(i) = (int)estimate(sum_of_choices.at(i));
     }
-    /*REP(i,est_choices.size())
-    {
-        est_user_location.at(i).e
-    }*/
+    
+    est_user_location = generate_est_map(est_choices, map);
+
 
     printf("Here is the tally of the unperturbed choices:\n");
 

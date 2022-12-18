@@ -190,4 +190,19 @@ void Data_Point::perturb_cell()
     perturb(perturbed_cell);
 }
 
+void Data_Point::set_long(double x)
+{
+    longtitude = x;
+}
+
+void Data_Point::set_lat(double y)
+{
+    latitude = y;
+}
+
+void Data_Point::set_cell(int z)
+{
+    designated_cell = z;
+}
+
 /*END Data_Point class*/

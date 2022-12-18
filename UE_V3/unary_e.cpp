@@ -10,6 +10,7 @@
 #include <vector>
 #include <algorithm>
 #include <string>
+#include <random>
 #include <stdlib.h> /* srand, rand */
 #include <time.h> /* time for randomization*/
 #include <cmath>/*exp(eulers number), log*/
@@ -125,6 +126,42 @@ void populate_perturbed_sum(const std::vector<Data_Point>& point, std::vector<in
         }
     }
 }
+double rand_doub(double x, double y)
+{
+    double lower_bound = x;
+    double upper_bound = y;
+    std::uniform_real_distribution<double> unif(x,y);
+    std::default_random_engine re;
+    double a_random_double = unif(re);
+
+    return a_random_double;
+}
+
+std::vector<Data_Point> generate_est_map(std::vector<int> choice, VECTWODUB map)
+{
+    std::vector<Data_Point> est_map;
+    REP(i, map.size())
+    {
+        double w = map[i][0];
+        double x = map[i][1];
+        double y = map[i][2];
+        double z = map[i][3];
+        if (choice[i]!=0)
+        {
+            //loop until k = all the tallied counts at cell choice 
+            REP(j,choice[i])
+            {
+                Data_Point usr;
+                usr.set_lat(rand_doub(x,w));
+                usr.set_long(rand_doub(z,y));                    
+                usr.set_cell(i);
+                est_map.push_back(usr);
+                }
+            }
+    } 
+    return est_map;
+}
+
 
 //Transpose the perturbed response vector to tally up the sum of choices
 VECTWOBOOL transpose_response(const VECTWOBOOL& response)

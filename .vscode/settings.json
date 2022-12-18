@@ -63,7 +63,9 @@
         "typeinfo": "cpp",
         "unordered_map": "cpp",
         "variant": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "numeric": "cpp",
+        "random": "cpp"
     },
     "workbench.preferredHighContrastLightColorTheme": "Default High Contrast",
     "workbench.colorTheme": "Default High Contrast",
