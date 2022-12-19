@@ -156,12 +156,15 @@ std::vector<Data_Point> generate_est_map(std::vector<int> choice, VECTWODUB map)
                 usr.set_long(rand_doub(z,y));                    
                 usr.set_cell(i);
                 est_map.push_back(usr);
-                }
             }
+        }
+        /*else
+        {
+            est_map.push_back()
+        }*/
     } 
     return est_map;
 }
-
 
 //Transpose the perturbed response vector to tally up the sum of choices
 VECTWOBOOL transpose_response(const VECTWOBOOL& response)

@@ -14,7 +14,7 @@ void encode(std::vector<bool>&,int,int);
 
 double coins_flip();
 
-bool perturb_bit();
+bool perturb_bit(bool);
 
 void perturb(std::vector<bool>&);
 
