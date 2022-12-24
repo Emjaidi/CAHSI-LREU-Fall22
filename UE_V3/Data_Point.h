@@ -44,5 +44,9 @@ std::vector<Data_Point> read_tsv(char* file);
 void x_limit(double&);
 void y_limit(double&);
 
+//std::vector<double> random_coord(double,double,double,double);
+
+std::vector<double> random_coord();
+
 VECTWODUB determine_map();
 #endif

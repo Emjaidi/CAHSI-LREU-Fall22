@@ -126,15 +126,23 @@ void populate_perturbed_sum(const std::vector<Data_Point>& point, std::vector<in
         }
     }
 }
-double rand_doub(double x, double y)
+
+//generates a random double given the parameters x/w
+
+double rand_doub(double fmin, double fmax)
 {
+/*{
     double lower_bound = x;
-    double upper_bound = y;
-    std::uniform_real_distribution<double> unif(x,y);
+    double upper_bound = w;
+    std::uniform_real_distribution<double> unif(x,w);
     std::default_random_engine re;
     double a_random_double = unif(re);
 
     return a_random_double;
+}*/
+
+    double f = (double)rand() / RAND_MAX;
+    return  fmin + f * (fmax - fmin);
 }
 
 std::vector<Data_Point> generate_est_map(std::vector<int> choice, VECTWODUB map)

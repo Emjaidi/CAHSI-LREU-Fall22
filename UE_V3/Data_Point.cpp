@@ -9,6 +9,7 @@
 #include <cstring>
 #include <vector>
 #include <fstream>
+#include <random>
 #include <iostream>
 #include <iomanip>
 
@@ -140,7 +141,24 @@ VECTWODUB determine_map()
     return map_cell;
 }
 
+std::vector<double> random_coord()
+{
+    std::vector<double> rand_coord {};
+    double rand_x = rand_doub(x_min, x_max);
+    double rand_y = rand_doub(y_min, y_max);
+    rand_coord = {rand_x, rand_y};
+    return rand_coord ;
+}
 
+/*std::vector<double> random_coord(double x_max, double y_max, double x_min, double y_min)
+{
+    std::vector<double> rand_coord {};
+    double rand_x = rand_double(x_min, x_max);
+    double rand_y = rand_double(y_min, y_max);
+
+    return rand_coord = {rand_x, rand_y};
+}
+*/
 
 /* BEGIN Data_Point class*/
 void Data_Point::set_coord(double x, double y)
