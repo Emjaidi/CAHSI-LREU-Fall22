@@ -131,11 +131,11 @@ void populate_perturbed_sum(const std::vector<Data_Point>& point, std::vector<in
 
 double rand_doub(double fmin, double fmax)
 {
-/*{
+/*{ old random doble gen.
     double lower_bound = x;
     double upper_bound = w;
-    std::uniform_real_distribution<double> unif(x,w);
     std::default_random_engine re;
+    std::uniform_real_distribution<double> unif(x,w);
     double a_random_double = unif(re);
 
     return a_random_double;
@@ -143,6 +143,26 @@ double rand_doub(double fmin, double fmax)
 
     double f = (double)rand() / RAND_MAX;
     return  fmin + f * (fmax - fmin);
+}
+
+double haversine(double lat_1, double long_1, double lat_2, double long_2)
+{
+    auto coord_1 = {lat_1, long_1};
+    auto coord_2 = {lat_2, long_2};
+
+    int R = 6371000; //Earth radius in km
+    
+    auto phi_1 = long_1 * M_PI / 180.0;
+    auto phi_2 = long_2 * M_PI / 180.0;
+
+    auto delta_phi = (long_1 - long_2) * M_PI / 180.0;
+    auto delta_lambda = (lat_1 - lat_2) * M_PI / 180.0;
+
+    auto a = (pow(sin(delta_phi/2.0), 2)) + cos(phi_1) * cos(phi_2) * (pow(sin(delta_lambda/2.0), 2));
+
+    auto c = 2.0 * atan2(sqrt(a),sqrt(1-a));
+    
+    return (R * c)/1000.0; 
 }
 
 std::vector<Data_Point> generate_est_map(std::vector<int> choice, VECTWODUB map)

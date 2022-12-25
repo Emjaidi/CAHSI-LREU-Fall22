@@ -12,6 +12,7 @@
 
 extern int CELL_COUNT;
 
+extern double x_max, y_max, x_min, y_min;
 
 int main()
 {
@@ -40,7 +41,8 @@ int main()
     }
     
     est_user_location = generate_est_map(est_choices, map);
-    
+
+// Test for random coordination generation BEGIN
     std::vector<double> r_c = random_coord();
     for(auto x: r_c)
     {
@@ -54,9 +56,10 @@ int main()
     {
         std::cout << std::setprecision(16) << x << ", ";
     }
-
+// Test for random coordinate generation END
     std::cout << std::endl;
 
+    std::cout << "Distance of map going east to west: " << haversine( y_min,x_max, y_min, x_min) << std::endl;
     printf("Here is the tally of the unperturbed choices:\n");
 
     for(auto x:og_sum_of_choices)
