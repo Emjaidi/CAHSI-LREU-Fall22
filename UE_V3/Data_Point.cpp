@@ -146,10 +146,25 @@ std::vector<double> random_coord()
     std::vector<double> rand_coord {};
     double rand_x = rand_doub(x_min, x_max);
     double rand_y = rand_doub(y_min, y_max);
-    rand_coord = {rand_x, rand_y};
+    rand_coord = {rand_y, rand_x};
     return rand_coord ;
 }
 
+std::vector<Data_Point> generate_dp_in_radius(const std::vector<Data_Point>& usr_loc)
+{
+    std::vector<Data_Point> dp_in_radius{ };
+    std::vector<double> r_coord = random_coord();
+    double radius = rand_doub(5.5, 10.0); //kilometers
+
+    REP(i, usr_loc.size())
+    {
+        if (haversine(usr_loc[i].latitude, usr_loc[i].longtitude, r_coord[0], r_coord[1]) < radius)
+        {
+            dp_in_radius.push_back(usr_loc[i]);
+        } 
+    }
+    return dp_in_radius;
+}
 /*std::vector<double> random_coord(double x_max, double y_max, double x_min, double y_min)
 {
     std::vector<double> rand_coord {};

@@ -20,10 +20,10 @@
 
 class Data_Point
 {
+public:
     double latitude;//Y-axis
     double longtitude;//X-axis
     int designated_cell;
-public:
     std::vector<bool> original_cell;
     std::vector<bool> perturbed_cell;
     Data_Point();
@@ -47,6 +47,8 @@ void y_limit(double&);
 //std::vector<double> random_coord(double,double,double,double);
 
 std::vector<double> random_coord();
+
+std::vector<Data_Point> generate_dp_in_radius(const std::vector<Data_Point>& );
 
 VECTWODUB determine_map();
 #endif

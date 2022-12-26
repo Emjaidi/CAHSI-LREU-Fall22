@@ -163,7 +163,7 @@ double haversine(double lat_1, double long_1, double lat_2, double long_2)
     auto c = 2.0 * atan2(sqrt(a),sqrt(1-a));
     
     return (R * c)/1000.0; 
-}
+    }
 
 std::vector<Data_Point> generate_est_map(std::vector<int> choice, VECTWODUB map)
 {

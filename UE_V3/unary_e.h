@@ -28,7 +28,7 @@ std::vector<Data_Point> generate_est_map(std::vector<int>, VECTWODUB);
 
 double rand_doub(double, double);
 
-double haversine(double, double, double, double);
+double haversine(double, double, double, double); //Determines the distance of two points in km
 
 VECTWOBOOL transpose_response(const VECTWOBOOL&);
 #endif
