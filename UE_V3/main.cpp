@@ -78,8 +78,10 @@ int main()
     std::vector<std::vector<int>> analyzed_query_values;
     std::vector<int> og_generation { }, est_generation { };
     //std::cout << "\n**********Here are the points within a randomly generated radius **********" << std::endl;
+    std::cout << "Starting the analysis of the data points in each map...\n";
     REP(i, 10000)
     {
+
         std::vector<int> analyzed_og_map = generate_dp_in_radius(user_location, est_user_location);
         analyzed_query_values.push_back(analyzed_og_map);
 
