@@ -16,10 +16,11 @@ extern int CELL_COUNT;
 extern double x_max, y_max, x_min, y_min;
 
 
-double cosine_similarity(int *A, int *B, unsigned int Vector_Length)
+double cosine_similarity(std::vector<int> A, std::vector<int> B)
 {
     double dot = 0.0, denom_a = 0.0, denom_b = 0.0 ;
-     for(unsigned int i = 0u; i < Vector_Length; ++i) {
+    REP(i, A.size()) 
+    {
         dot += A[i] * B[i] ;
         denom_a += A[i] * A[i] ;
         denom_b += B[i] * B[i] ;
@@ -75,8 +76,9 @@ int main()
 */
 
     std::vector<std::vector<int>> analyzed_query_values;
-    std::cout << "\n**********Here are the points within a randomly generated radius **********" << std::endl;
-    REP(i, 100)
+    std::vector<int> og_generation { }, est_generation { };
+    //std::cout << "\n**********Here are the points within a randomly generated radius **********" << std::endl;
+    REP(i, 10000)
     {
         std::vector<int> analyzed_og_map = generate_dp_in_radius(user_location, est_user_location);
         analyzed_query_values.push_back(analyzed_og_map);
@@ -86,11 +88,18 @@ int main()
     {
         REP(j, i.size())
         {
-            std::cout << i[j] << ", ";
+            if (j == 0)
+            {
+                og_generation.push_back(i[j]);
+            }
+            else
+            {
+                est_generation.push_back(i[j]);
+            }
         }
-        std::cout << "\n";
     }
-    std::cout << "\n********************"<< std::endl;
+    std::cout << "\n*********Here is the Cosine similarity***********"<< std::endl;
+    std::cout << cosine_similarity(og_generation, est_generation);
 
    // std::cout << "Distance of map going east to west: " << haversine( y_min,x_max, y_min, x_min) << std::endl;
 
