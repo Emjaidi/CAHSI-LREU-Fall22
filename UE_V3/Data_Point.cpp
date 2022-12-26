@@ -114,7 +114,7 @@ VECTWODUB determine_map()
     double cell_width = (x_max - x_min)  /(double)CELL;
     double cell_height = (y_max - y_min) /(double)CELL;
 
-    print_min_max();
+    //print_min_max();
 //    std::cout << cell_count << "\n";
 //    std::cout << "Cell width: "<< cell_width << "\nCell Height: "<< cell_height << "\n";
 
@@ -150,12 +150,14 @@ std::vector<double> random_coord()
     return rand_coord ;
 }
 
-std::vector<Data_Point> generate_dp_in_radius(const std::vector<Data_Point>& usr_loc)
+/*std::vector<Data_Point> generate_dp_in_radius(const std::vector<Data_Point>& usr_loc, const std::vector<Data_Point>& est_usr_loc)
 {
     std::vector<Data_Point> dp_in_radius{ };
     std::vector<double> r_coord = random_coord();
     double radius = rand_doub(5.5, 10.0); //kilometers
 
+// loop through user location vector and compare the haversine distance
+// between the two points to the the radius
     REP(i, usr_loc.size())
     {
         if (haversine(usr_loc[i].latitude, usr_loc[i].longtitude, r_coord[0], r_coord[1]) < radius)
@@ -164,6 +166,34 @@ std::vector<Data_Point> generate_dp_in_radius(const std::vector<Data_Point>& usr
         } 
     }
     return dp_in_radius;
+}
+*/
+std::vector<int> generate_dp_in_radius(const std::vector<Data_Point>& usr_loc, const std::vector<Data_Point>& est_usr_loc)
+{
+    std::vector<int> dp_in_radius{ };
+    int og_map_count{ };
+    int est_map_count { };
+    std::vector<double> r_coord = random_coord();
+    double radius = rand_doub(5.5, 6.0); //kilometers
+
+// loop through user location vector and compare the haversine distance
+// between the two points to the the radius
+    REP(i, est_usr_loc.size())
+    {
+        if (haversine(est_usr_loc[i].latitude, est_usr_loc[i].longtitude, r_coord[0], r_coord[1]) < radius)
+        {
+            est_map_count++;
+        } 
+    }
+    REP(i, usr_loc.size())
+    {
+        if (haversine(usr_loc[i].latitude, usr_loc[i].longtitude, r_coord[0], r_coord[1]) < radius)
+        {
+            og_map_count++;
+        } 
+    }
+
+    return dp_in_radius = {og_map_count, est_map_count};
 }
 /*std::vector<double> random_coord(double x_max, double y_max, double x_min, double y_min)
 {

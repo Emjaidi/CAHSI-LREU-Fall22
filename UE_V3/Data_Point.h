@@ -48,7 +48,7 @@ void y_limit(double&);
 
 std::vector<double> random_coord();
 
-std::vector<Data_Point> generate_dp_in_radius(const std::vector<Data_Point>& );
+std::vector<int> generate_dp_in_radius(const std::vector<Data_Point>&, const std::vector<Data_Point>&);
 
 VECTWODUB determine_map();
 #endif

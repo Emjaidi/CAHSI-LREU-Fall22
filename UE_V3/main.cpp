@@ -8,11 +8,24 @@
 #include "unary_e.h"
 #include <vector>
 #include <iomanip>
+#include <cmath>
 #include <iostream>
 
 extern int CELL_COUNT;
 
 extern double x_max, y_max, x_min, y_min;
+
+
+double cosine_similarity(int *A, int *B, unsigned int Vector_Length)
+{
+    double dot = 0.0, denom_a = 0.0, denom_b = 0.0 ;
+     for(unsigned int i = 0u; i < Vector_Length; ++i) {
+        dot += A[i] * B[i] ;
+        denom_a += A[i] * A[i] ;
+        denom_b += B[i] * B[i] ;
+    }
+    return dot / (sqrt(denom_a) * sqrt(denom_b)) ;
+}
 
 int main()
 {
@@ -22,6 +35,7 @@ int main()
     std::vector<int> og_sum_of_choices(CELL_COUNT,0);
     std::vector<int> sum_of_choices(CELL_COUNT,0);
     std::vector<int> est_choices(CELL_COUNT,0);
+    srand(time(nullptr));
 
     REP(i,user_location.size())
     {
@@ -59,17 +73,28 @@ int main()
 // Test for random coordinate generation END
 
 */
+
+    std::vector<std::vector<int>> analyzed_query_values;
     std::cout << "\n**********Here are the points within a randomly generated radius **********" << std::endl;
-    std::vector<Data_Point> analyzed_og_map = generate_dp_in_radius(user_location);
-    for(auto x: analyzed_og_map)
+    REP(i, 100)
     {
-        std::cout << std::setprecision(32) << x.longtitude << ", " << x.latitude << std::endl;
+        std::vector<int> analyzed_og_map = generate_dp_in_radius(user_location, est_user_location);
+        analyzed_query_values.push_back(analyzed_og_map);
+
+    }
+    for(auto i: analyzed_query_values)
+    {
+        REP(j, i.size())
+        {
+            std::cout << i[j] << ", ";
+        }
+        std::cout << "\n";
     }
     std::cout << "\n********************"<< std::endl;
 
    // std::cout << "Distance of map going east to west: " << haversine( y_min,x_max, y_min, x_min) << std::endl;
 
-    printf("Here is the tally of the unperturbed choices:\n");
+   /* printf("Here is the tally of the unperturbed choices:\n");
 
     for(auto x:og_sum_of_choices)
     {
@@ -96,6 +121,7 @@ int main()
 //        std::cout << std::endl;
 //    }
 
+*/
 
     return 0;
 }
