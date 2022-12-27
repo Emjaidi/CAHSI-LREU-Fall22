@@ -13,8 +13,10 @@
 #include <iostream>
 #include <iomanip>
 
-double const CELL = 3; 
+double const CELL = 5; 
 int CELL_COUNT = (int)CELL*CELL;
+
+double const RADIUS_LOWER_BOUND = 1.5, RADIUS_UPPER_BOUND = 5.0;
 
 double x_max, y_max, x_min, y_min; // keeps track of the graph limits
 //double xt_max, yt_max, xt_min, yt_min; //its
@@ -174,7 +176,7 @@ std::vector<int> generate_dp_in_radius(const std::vector<Data_Point>& usr_loc, c
     int og_map_count{ };
     int est_map_count { };
     std::vector<double> r_coord = random_coord();
-    double radius = rand_doub(5.5, 6.0); //kilometers
+    double radius = rand_doub(RADIUS_LOWER_BOUND, RADIUS_UPPER_BOUND); //kilometers
 
 // loop through user location vector and compare the haversine distance
 // between the two points to the the radius
