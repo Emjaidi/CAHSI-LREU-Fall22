@@ -9998,3 +9998,10 @@
 898	4bac0daef964a520ffe03ae3	4bf58dd8d48988d1d1941735	Ramen /  Noodle House	35.65932246720802	139.70138937234879	540	Sun Apr 08 10:27:48 +0000 2012
 774	4b569977f964a520551628e3	4bf58dd8d48988d12d941735	Government Building	35.710036	139.810697	540	Sun Apr 08 10:27:48 +0000 2012
 324	4b093eeff964a520e51423e3	4bf58dd8d48988d129951735	Train Station	35.658521726951236	139.7013260344949	540	Sun Apr 08 10:28:04 +0000 2012
+Starting the analysis of the data points in each map...
+
+*********Here is the Cosine similarity***********
+0.660485Starting the analysis of the data points in each map...
+
+*********Here is the Cosine similarity***********
+0.693798

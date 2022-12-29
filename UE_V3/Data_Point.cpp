@@ -13,10 +13,10 @@
 #include <iostream>
 #include <iomanip>
 
-double const CELL = 5; 
+double const CELL = 7;
 int CELL_COUNT = (int)CELL*CELL;
 
-double const RADIUS_LOWER_BOUND = 1.5, RADIUS_UPPER_BOUND = 5.0;
+double const RADIUS_LOWER_BOUND = 1.5, RADIUS_UPPER_BOUND = 5.0; //Upper bound 3.0 for full data set || 5.0 for 25k.txt
 
 double x_max, y_max, x_min, y_min; // keeps track of the graph limits
 //double xt_max, yt_max, xt_min, yt_min; //its
