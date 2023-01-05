@@ -13,7 +13,7 @@
 #include <iostream>
 #include <iomanip>
 
-double const CELL = 7;
+double const CELL = 9;
 int CELL_COUNT = (int)CELL*CELL;
 
 double const RADIUS_LOWER_BOUND = 1.5, RADIUS_UPPER_BOUND = 5.0; //Upper bound 3.0 for full data set || 5.0 for 25k.txt

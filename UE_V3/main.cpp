@@ -91,7 +91,6 @@ int main()
     {
         std::vector<int> analyzed_og_map = generate_dp_in_radius(user_location, est_user_location);
         analyzed_query_values.push_back(analyzed_og_map);
-
     }
     for(auto i: analyzed_query_values)
     {

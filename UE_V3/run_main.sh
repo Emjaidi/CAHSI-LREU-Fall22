@@ -2,11 +2,18 @@
 
 date +%H:%M:%S >> results.txt
 sum=0
-for ((n=0;n<5;n++))
+version=5
+
+while [ $version -le 11 ]
+do
+    echo "Cell count: $version" >> results.txt
+    for ((n=0;n<5;n++))
     do
-        program=($(./main))
+        program=($(./main$version))
         echo "$program," >> results.txt
         sum=$(echo "scale=8;$sum+$program" | bc)
+    done
+    echo "scale=10; $sum/$n" | bc >> results.txt
+    sum=0
+    version=$(( $version + 1 ))
 done
-
-echo "scale=8; $sum/$n" | bc

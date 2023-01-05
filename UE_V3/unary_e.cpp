@@ -20,9 +20,9 @@
 extern int CELL_COUNT;
 
 const int POPULATION = 250000; //Used in estimation formula
-const double EPSILON = log(2.0);
-//const double P = 0.95;
-const double P = (exp((EPSILON/2)))/(1 + exp((EPSILON/2)));
+const double EPSILON = log(2.5);
+//const double P = 0.651668523;
+const double P = exp(EPSILON/2.0)/(1 + exp(EPSILON/2.0));
 const double Q = 1.00 - P;
 
 //Function returns vector of bools
